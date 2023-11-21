@@ -2,8 +2,11 @@ import CustomMenu from './components/menu/CustomMenu';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import React from 'react';
+import FullScreenLoader from './components/loader/FullScreenLoader';
 const Demo = () => {
+  const [loader, setLoader] = React.useState<boolean>(false);
   // ... other code remains the same
   const handleEdit = () => {
     // Perform edit action
@@ -40,6 +43,10 @@ const Demo = () => {
     action(); // Call the respective action function
   };
 
+  const handleOpenLoader = () => {
+    setLoader(true);
+  };
+
   const menuItemStyles = {
     // Customize individual menu item styles here
     // Example:
@@ -58,6 +65,12 @@ const Demo = () => {
         options={options}
         handleOptionClick={handleOptionClick}
       />
+      <br />
+      <br />
+      <Button variant='contained' onClick={handleOpenLoader}>
+        Loader
+      </Button>
+      <FullScreenLoader open={loader} />
     </Box>
   );
 };

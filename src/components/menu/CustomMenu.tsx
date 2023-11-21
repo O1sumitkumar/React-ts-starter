@@ -53,7 +53,9 @@ const CustomMenu: FC<OptionsArray> = ({
                 {option.icon}
               </span>
             </ListItemIcon>
-            <Typography variant='inherit'>{option.text}</Typography>
+            <Typography variant='inherit' sx={{ color: option.color }}>
+              {option.text}
+            </Typography>
           </MenuItem>
         ))}
       </StyledMenu>
