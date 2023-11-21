@@ -3,7 +3,7 @@ const Button = (props) => {
     <button
       className={props.className}
       onClick={props.onClick}
-      type={props.type || "submit"}
+      type={props.type || 'submit'}
     >
       {props.text}
       {props.children}

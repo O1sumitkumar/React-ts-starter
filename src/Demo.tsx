@@ -5,8 +5,10 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 import FullScreenLoader from './components/loader/FullScreenLoader';
+import DynamicModal from './components/dynamicModal/DynamicModal';
 const Demo = () => {
   const [loader, setLoader] = React.useState<boolean>(false);
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
   // ... other code remains the same
   const handleEdit = () => {
     // Perform edit action
@@ -47,6 +49,10 @@ const Demo = () => {
     setLoader(true);
   };
 
+  const handleModal = () => {
+    setOpenModal(true);
+  };
+
   const menuItemStyles = {
     // Customize individual menu item styles here
     // Example:
@@ -71,6 +77,17 @@ const Demo = () => {
         Loader
       </Button>
       <FullScreenLoader open={loader} />
+      <br />
+      <br />
+      <DynamicModal
+        open={openModal}
+        onClose={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
+      <Button variant='text' color='warning' onClick={handleModal}>
+        Open Modal
+      </Button>
     </Box>
   );
 };

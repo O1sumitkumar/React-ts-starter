@@ -5,11 +5,11 @@ const InputField = (props) => {
       type={props.type}
       pattern={props.pattern}
       value={props.value}
-      className="input"
+      className='input'
       name={props.name}
       id={props.name}
       onChange={props.onChange}
-      autoComplete="off"
+      autoComplete='off'
     />
   );
 };
