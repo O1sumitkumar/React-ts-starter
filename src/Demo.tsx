@@ -6,6 +6,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import FullScreenLoader from './components/loader/FullScreenLoader';
 import DynamicModal from './components/dynamicModal/DynamicModal';
+import FooterComponent from './components/footer/footer';
 const Demo = () => {
   const [loader, setLoader] = React.useState<boolean>(false);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
@@ -88,6 +89,14 @@ const Demo = () => {
       <Button variant='text' color='warning' onClick={handleModal}>
         Open Modal
       </Button>
+      <FooterComponent
+        contained={'Save'}
+        outlined={'Back'}
+        text={'Cancel'}
+        containedOnClick={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
     </Box>
   );
 };
