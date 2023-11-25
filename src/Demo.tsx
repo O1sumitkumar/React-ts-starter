@@ -46,9 +46,7 @@ const Demo = () => {
     action(); // Call the respective action function
   };
 
-  const handleOpenLoader = () => {
-    setLoader(true);
-  };
+  const handleOpenLoader = () => setLoader(true);
 
   const handleModal = () => {
     setOpenModal(true);
