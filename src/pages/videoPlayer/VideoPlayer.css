@@ -1,0 +1,208 @@
+/* .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+} */
+
+/* Fullscreen mode */
+/* :fullscreen video,
+:-webkit-full-screen video,
+:-moz-full-screen video,
+:-ms-fullscreen video {
+  width: 100%;
+  height: 100%;
+} */
+
+/* .player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.video {
+  flex-grow: 1;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+} */
+
+/* this work nicely */
+
+/* .player-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden; /* Ensure no controls overflow */
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: red;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.player-container:hover .controls {
+  opacity: 1;
+}
+
+/* Fullscreen mode */
+:fullscreen .player-container,
+:-webkit-full-screen .player-container,
+:-moz-full-screen .player-container,
+:-ms-fullscreen .player-container {
+  padding-top: 0;
+}
+
+:fullscreen .video,
+:-webkit-full-screen .video,
+:-moz-full-screen .video,
+:-ms-fullscreen .video {
+  width: 100%;
+  height: 100%;
+}
+
+:fullscreen .controls,
+:-webkit-full-screen .controls,
+:-moz-full-screen .controls,
+:-ms-fullscreen .controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+} */
+
+
+/* upto this */
+/* .cool{
+    background-color: #e9e9e9;
+} */
+.player-container {
+    position: relative;
+    width: 100%; /* Full width */
+    /* Maintain aspect ratio of 16:9 for the video */
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (height/width * 100%) */
+    overflow: hidden; /* Hide the overflow */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: red;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .player-container:hover .controls {
+    opacity: 1;
+  }
+  
+  /* Fullscreen mode */
+  :fullscreen .player-container,
+  :-webkit-full-screen .player-container,
+  :-moz-full-screen .player-container,
+  :-ms-fullscreen .player-container {
+    padding-top: 0;
+  }
+  
+  :fullscreen .video,
+  :-webkit-full-screen .video,
+  :-moz-full-screen .video,
+  :-ms-fullscreen .video {
+    width: 100%;
+    height: 100%;
+  }
+  
+  :fullscreen .controls,
+  :-webkit-full-screen .controls,
+  :-moz-full-screen .controls,
+  :-ms-fullscreen .controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Tablet */
+  @media (max-width: 768px) {
+    .player-container {
+      padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    .player-container {
+      padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
+    }
+  }
+
+ /* iOS devices */
+video::-webkit-media-controls {
+    display: none !important; /* Hide native controls */
+  }
+  
+  video {
+    -webkit-playsinline: playsinline;
+    playsinline: true; /* Prevent automatic fullscreen on play in iOS */
+  }
+  
+
+  /* Add media query for mobile devices */
+@media (max-width: 768px) {
+    .player-container .controls {
+    background-color: transparent;
+      position: absolute;
+      top: 50%; /* Center vertically */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .player-container .controls button {
+      margin: 0 10px; /* Spacing between buttons */
+    }
+  
+    .player-container .controls .bottom-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }

@@ -1,7 +1,9 @@
 import './App.css';
-import Demo from './Demo';
-import { Box, createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { CssBaseline } from '@mui/material';
+//import ResponsiveDrawer from './assets/SideBar/SideBar';
+import Demo from './Demo.tsx';
+import VideoPlayer from './pages/videoPlayer/VideoPlayer.tsx';
 // import { BrowserRouter as Router } from 'react-router-dom';
 
 // Define your custom theme
@@ -30,9 +32,9 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box>
-          <Demo />
-        </Box>
+        <VideoPlayer />
+        {/* <Demo /> */}
+        {/* <ResponsiveDrawer /> */}
       </ThemeProvider>
     </>
   );

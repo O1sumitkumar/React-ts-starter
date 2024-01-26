@@ -1,50 +1,46 @@
 import CustomMenu from './components/menu/CustomMenu';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 import FullScreenLoader from './components/loader/FullScreenLoader';
 import DynamicModal from './components/dynamicModal/DynamicModal';
 import FooterComponent from './components/footer/footer';
+// import DatePickerValue from './components/datePicker/DatePicker';
 const Demo = () => {
   const [loader, setLoader] = React.useState<boolean>(false);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   // ... other code remains the same
-  const handleEdit = () => {
-    // Perform edit action
-    console.log('Edit clicked');
-  };
-
-  const handleDelete = () => {
-    // Perform delete action
-    console.log('Delete clicked');
-  };
-
-  const handlePreview = () => {
-    // Perform preview action
-    console.log('Preview clicked');
-  };
-
   const options = [
-    { text: 'Edit', icon: <EditIcon />, color: 'blue', action: handleEdit },
+    {
+      text: 'Edit',
+      icon: 'Edit Icon', // Replace with your icon component or text
+      color: 'blue', // Customize color if needed
+    },
     {
       text: 'Delete',
-      icon: <DeleteIcon />,
-      color: 'red',
-      action: handleDelete,
-    },
-    {
-      text: 'Preview',
-      icon: <VisibilityIcon />,
-      color: 'green',
-      action: handlePreview,
+      icon: 'Delete Icon', // Replace with your icon component or text
+      color: 'red', // Customize color if needed
     },
   ];
+  // Array of products (assuming each product has an ID and name)
+  const products = [
+    { id: 'str36', name: 'Product 1' },
+    { id: 'sfe54', name: 'Product 2' },
+    // Add more products as needed
+  ];
 
-  const handleOptionClick = (action: () => void) => {
-    action(); // Call the respective action function
+  // Example functions to handle different actions (edit, delete) on products
+  const handleEditProduct = (id: string) => {
+    console.log(`Editing product with ID: ${id}`);
+    // Implement logic to edit the product with the given ID
   };
+
+  const handleDeleteProduct = (id: string) => {
+    console.log(`Deleting product with ID: ${id}`);
+    // Implement logic to delete the product with the given ID
+  };
+
+  // Array of handle functions to pass to CustomMenu
+  const handleFunctions = [handleEditProduct, handleDeleteProduct];
 
   const handleOpenLoader = () => setLoader(true);
 
@@ -65,11 +61,7 @@ const Demo = () => {
   return (
     <Box>
       <h1>Example Component</h1>
-      <CustomMenu
-        menuItemStyles={menuItemStyles}
-        options={options}
-        handleOptionClick={handleOptionClick}
-      />
+
       <br />
       <br />
       <Button variant='contained' onClick={handleOpenLoader}>
@@ -95,6 +87,21 @@ const Demo = () => {
           throw new Error('Function not implemented.');
         }}
       />
+      <br />
+
+      <div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <p>{product.name}</p>
+            <CustomMenu
+              data={[product]}
+              handleFunctions={handleFunctions}
+              options={options}
+              menuStyles={menuItemStyles}
+            />
+          </div>
+        ))}
+      </div>
     </Box>
   );
 };

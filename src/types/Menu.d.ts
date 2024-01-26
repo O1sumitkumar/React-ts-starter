@@ -2,10 +2,10 @@
 import React from 'react';
 
 interface Option {
-  text: string;
-  icon: JSX.Element;
-  color: string;
-  action: () => void;
+  text?: string;
+  icon?: JSX.Element;
+  color?: string;
+  action?: () => void;
 }
 
 interface OptionsArray {
