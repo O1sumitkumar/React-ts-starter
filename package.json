@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dschoon/react-waves": "^4.0.3",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.15.6",
     "@mui/x-date-pickers": "^6.18.2",
@@ -20,7 +21,8 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-player": "^2.14.1",
-    "react-router-dom": "^6.19.0"
+    "react-router-dom": "^6.19.0",
+    "wavesurfer-react": "^3.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

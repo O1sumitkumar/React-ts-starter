@@ -3,6 +3,7 @@ import './VideoPlayer.css';
 import { AUDIO_FILE, VIDEO_FILE } from '../../assets/data/data';
 import HeadphonesRoundedIcon from '@mui/icons-material/HeadphonesRounded';
 import { Box, Stack, Typography } from '@mui/material';
+import ReactWaves from '@dschoon/react-waves';
 
 const VideoPlayer: React.FC = () => {
   const playerContainerRef = useRef<HTMLDivElement | null>(null);
@@ -12,6 +13,11 @@ const VideoPlayer: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlayPauses = () => {
+    setPlaying(!playing);
+  };
 
   useEffect(() => {
     if (playerRef.current) {
@@ -99,7 +105,7 @@ const VideoPlayer: React.FC = () => {
   return (
     <div style={{ maxWidth: '' }}>
       <div ref={playerContainerRef} className='player-container'>
-        <audio
+        <video
           //   key={isFullScreen ? 'fullscreen' : 'inline'}
           ref={playerRef}
           className='video'
@@ -111,13 +117,13 @@ const VideoPlayer: React.FC = () => {
         >
           <source
             // src='https://www.w3schools.com/tags/mov_bbb.mp4'
-            src={`${AUDIO_FILE.DIL_JHOOM}`}
-            // src={`${VIDEO_FILE.FALAK_TAK}`}
-            // type='video/mp4'
-            type='audio/mpeg'
+            // src=video_FILE.DIL_JHOOM}`}
+            src={`${VIDEO_FILE.FALAK_TAK}`}
+            type='video/mp4'
+            // type='audio/mpeg'
           />
           Your browser does not support the video tag.
-        </audio>
+        </video>
         <Box
           sx={{
             width: '100%',
@@ -131,7 +137,6 @@ const VideoPlayer: React.FC = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <HeadphonesRoundedIcon fontSize='large' color='primary' />
             </Box>
-
             <Typography
               variant='h3'
               sx={{ fontSize: { xs: '24px', md: '30px' } }}
@@ -141,6 +146,29 @@ const VideoPlayer: React.FC = () => {
             <Typography sx={{ fontSize: { xs: '12px', md: '16px' } }}>
               The Professional Cookery
             </Typography>
+            <div style={{ width: '700px' }}>
+              <ReactWaves
+                audioFile={AUDIO_FILE.DIL_JHOOM} // replace 'track1' with your actual audio file
+                className={'react-waves'}
+                options={{
+                  barWidth: 3,
+                  barHeight: 5,
+                  barGap: 6,
+                  backend: 'MediaElement',
+                  normalize: true,
+                  cursorWidth: 0,
+                  mediaType: 'audio',
+                  hideScrollbar: true,
+                  responsive: true,
+                  progressColor: '#2492FC',
+                  waveColor: '#E9EFF4',
+                }}
+                zoom={1}
+                volume={0}
+                playing={isPlaying}
+                // onFinishedPlaying={() => setPlaying(false)} // Add this line if you want to stop playing when the audio finishes
+              />
+            </div>
           </Stack>
         </Box>
         <div className='controls'>
