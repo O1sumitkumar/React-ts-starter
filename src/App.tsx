@@ -4,6 +4,7 @@ import { CssBaseline } from '@mui/material';
 //import ResponsiveDrawer from './assets/SideBar/SideBar';
 import Demo from './Demo.tsx';
 import VideoPlayer from './pages/videoPlayer/VideoPlayer.tsx';
+import YourComponent from './pages/vertical/VerticalPlayer.tsx';
 // import { BrowserRouter as Router } from 'react-router-dom';
 
 // Define your custom theme
@@ -32,9 +33,12 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <VideoPlayer />
+        {/* <VideoPlayer />
+         */}
         {/* <Demo /> */}
         {/* <ResponsiveDrawer /> */}
+
+        <YourComponent />
       </ThemeProvider>
     </>
   );
