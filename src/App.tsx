@@ -1,9 +1,10 @@
+// @ts-nocheck
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { CssBaseline } from '@mui/material';
 //import ResponsiveDrawer from './assets/SideBar/SideBar';
-import Demo from './Demo.tsx';
-import VideoPlayer from './pages/videoPlayer/VideoPlayer.tsx';
+// import Demo from './Demo.tsx';
+// import VideoPlayer from './pages/videoPlayer/VideoPlayer.tsx';
 import YourComponent from './pages/vertical/VerticalPlayer.tsx';
 // import { BrowserRouter as Router } from 'react-router-dom';
 

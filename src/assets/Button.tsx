@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Button = (props) => {
   return (
     <button

@@ -2,6 +2,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
   /* background-color: pink; */
 }
 
@@ -21,7 +23,7 @@ video {
 }
 
 /* Optional: Add a play button icon in the center of the reel */
-.video-wrapper::before {
+.Btn {
   content: '\25B6'; /* Unicode play icon */
   font-size: 3em;
   color: red;

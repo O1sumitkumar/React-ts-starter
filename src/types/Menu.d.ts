@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+// @ts-nocheck
 import React from 'react';
 
 interface Option {

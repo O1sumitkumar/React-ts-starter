@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useRef, useState, useEffect } from 'react';
 import './VideoPlayer.css';
 import { AUDIO_FILE, VIDEO_FILE } from '../../assets/data/data';

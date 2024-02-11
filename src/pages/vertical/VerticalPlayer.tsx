@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useRef, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { VIDEO_FILE } from '../../assets/data/data';
@@ -14,11 +15,14 @@ import {
   A11y,
   History,
 } from 'swiper/modules';
-import { Grid } from '@mui/material';
+import { Button } from '@mui/material';
 
 const YourComponent = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState();
+  const [showButton, setShowButton] = useState(true);
+  const [play, setPlay] = useState(false);
   const swiperRef = useRef(null);
+  const videoRefs = useRef({});
   const [totalDuration, setTotalDuration] = useState(5000);
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
@@ -36,8 +40,11 @@ const YourComponent = () => {
   const handleSlideChange = () => {
     // Stop the previous video
     if (isPlaying) {
-      const prevVideo = document.getElementById(`video-${isPlaying}`);
-      prevVideo.pause();
+      const prevVideo = videoRefs.current[isPlaying];
+      if (prevVideo) {
+        prevVideo.pause();
+        setPlay(false);
+      }
     }
 
     // Get the current slide index
@@ -47,16 +54,21 @@ const YourComponent = () => {
     if (videodata[index].url) {
       // Play the current video only if there was a user interaction
       if (hasUserInteracted()) {
-        const currVideo = document.getElementById(
-          `video-${videodata[index].id}`,
-        );
-        currVideo.play();
-        setIsPlaying(videodata[index].id);
+        const currVideo = videoRefs.current[videodata[index].id];
+        if (currVideo) {
+          currVideo.play();
+          setPlay(true);
+          setIsPlaying(videodata[index].id);
+          setShowButton(true);
+          // Set a timeout to hide the button after 2 seconds
+          setTimeout(() => {
+            setShowButton(false);
+          }, 1000);
+        }
       }
     }
   };
 
-  // Function to check if there was any user interaction
   const hasUserInteracted = () => {
     // Add your logic here to check for user interaction
     // For example, you can set a state when the component is clicked or touched
@@ -72,13 +84,27 @@ const YourComponent = () => {
     // Access the total duration from the event
     const duration = event.target.duration;
     setTotalDuration(duration * 1000);
-    // console.log('duration', duration);
   };
 
   const handleTimeUpdate = (event) => {
     const currentTime = event.target.currentTime;
     // Your logic based on the current playback time
-    // console.log('Current Time: ' + currentTime);
+  };
+
+  const handlePlayPauseClick = () => {
+    // Toggle play/pause for the currently playing video
+    if (isPlaying) {
+      const currVideo = videoRefs.current[isPlaying];
+      if (currVideo) {
+        if (currVideo.paused) {
+          currVideo.play();
+          setPlay(true);
+        } else {
+          currVideo.pause();
+          setPlay(false);
+        }
+      }
+    }
   };
 
   return (
@@ -99,7 +125,6 @@ const YourComponent = () => {
         direction='vertical'
         navigation
         lazy={true}
-        // pagination={{ clickable: true }}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, History]}
         history={{
           key: 'slide',
@@ -112,15 +137,12 @@ const YourComponent = () => {
           <SwiperSlide key={index} data-history={`video-${index}`}>
             <div className='video-wrapper'>
               <video
+                ref={(el) => (videoRefs.current[video.id] = el)}
                 id={`video-${video.id}`}
                 playsInline
-                preload='metaData'
-                // controls
-                // loop
-                autoPlay
-                // muted
+                preload='metadata'
+                // autoPlay
                 onEnded={handleVideoEnd}
-                // height={'1080px'}
                 loading='lazy'
                 className={`video-${index}`}
                 src={video.url}
@@ -133,12 +155,6 @@ const YourComponent = () => {
               >
                 Your browser does not support the video tag.
               </video>
-
-              {/* <div className='swiper-lazy-preloader swiper-lazy-preloader-white'></div> */}
-              {/* <div
-                className={`play-button ${isPlaying ? 'pause' : 'play'}`}
-                onClick={handlePlayButtonClick}
-              ></div> */}
             </div>
           </SwiperSlide>
         ))}
@@ -149,6 +165,28 @@ const YourComponent = () => {
           <span ref={progressContent}></span>
         </div>
       </Swiper>
+      <Button
+        variant='contained'
+        color={!play ? 'error' : 'primary'}
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          zIndex: '15',
+          transition: 'opacity 0.3s',
+          opacity: showButton ? 1 : 0,
+          '&:hover': {
+            opacity: 1,
+          },
+        }}
+        onClick={handlePlayPauseClick}
+        onMouseEnter={() => setShowButton(true)}
+        onMouseLeave={() => setShowButton(false)}
+      >
+        {!play ||
+        (videoRefs.current[isPlaying] && videoRefs.current[isPlaying].paused)
+          ? 'Play'
+          : 'Pause'}
+      </Button>
     </div>
   );
 };

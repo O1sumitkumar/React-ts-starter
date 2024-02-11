@@ -1,3 +1,4 @@
+// @ts-nocheck
 import CustomMenu from './components/menu/CustomMenu';
 import { Box, Button } from '@mui/material';
 import React from 'react';

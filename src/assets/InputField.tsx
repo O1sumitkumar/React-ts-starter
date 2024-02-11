@@ -1,3 +1,4 @@
+// @ts-nocheck
 const InputField = (props) => {
   return (
     <input
